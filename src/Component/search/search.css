@@ -1,0 +1,11 @@
+#search .card {
+    width: 400px;
+    height: 400px;
+    border-radius: 15px;
+}
+
+#search .card img {
+    width: 400px;
+    height: 400px;
+    border-radius: 15px;;
+}
