@@ -134,10 +134,12 @@ function Profile() {
                             >
                               {item.name_recipes}
                             </h5>
+                            <div className="d-flex flex-row">
                             <ModalUpdate item={item}
                               recipeId={item.recipes_id}
                             />
                             <ModalDelete item={item} />
+                            </div>
                           </div>
                         </div>
                       </div>

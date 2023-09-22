@@ -40,6 +40,10 @@ export const updateUsers = createAsyncThunk(
         return response?.data;
       }
     } catch (error) {
+      toast.error("Error updating Profile");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
       throw error;
     }
   }

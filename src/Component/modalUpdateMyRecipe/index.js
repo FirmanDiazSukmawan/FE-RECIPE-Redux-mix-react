@@ -64,7 +64,7 @@ function ModalUpdate(item) {
       );
       handleClose();
     } catch (error) {
-      toast.error("Error updating recipe:", error);
+      console.log(error);
     }
   };
 

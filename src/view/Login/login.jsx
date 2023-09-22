@@ -10,15 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errmsg,setErrmsg] = useState("");
     const navigate = useNavigate();
-    
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token");
-    //     if (token) {
-    //         navigate("/")
-    //     }
-    // },[navigate])
+
+    const [cek,setcek] = useState(false);
+
+  const handleChange = async (e) => {
+    setcek(e.target.checked)
+  }
+
 
 
 
@@ -35,14 +34,18 @@ function Login(){
         localStorage.setItem("userId",res.data.data.users_id);
         console.log(res)
         toast.success("Login succces bro")
-        navigate("/")
+        
+        setTimeout(() => {
+            navigate("/")
+        }, 1500);
+        
         
          
         console.log(res)
       } catch (err) {
         if (err){
-          setErrmsg(err.response.data.message);
-          toast.error(errmsg)
+         
+          toast.error(err.response.data.message)
         }
       }
     }
@@ -110,7 +113,7 @@ function Login(){
                                     Log in into your exiting account
                                 </div>
                             </div>
-                            <form onSubmit={handleLogin}>
+                            <form >
                             
                             <div className="inpute">
                             
@@ -142,15 +145,19 @@ function Login(){
                                 </div>
                             </div>
                             <div className="formcheck mb-3 mt-3">
-                                <input type="checkbox" className="form-check-input bg-warning " />
-                                <label htmlFor="terms" className="label-form">
+                                <input type="checkbox" className="form-check-input  " onChange={handleChange} />
+                                <label htmlFor="terms" className="label-form"style={{ marginLeft:"0.5vw"}}>
                                     I agree to terms & conditions
                                 </label>
                             </div>
                             <div className="d-grid">
-                                <button type="submit" className="btn btn-warning ">
+                                {!cek?(      <button type="submit" className="btn btn-secondary " disabled={!cek}>
                                     Log in
-                                </button>
+                                </button>):( <button type="submit" className="btn btn-warning " onClick={handleLogin}>
+                                    Log in
+                                </button>) }
+                           
+                               
                             </div>
                             <div className="forgot text-end mb-3">
                                 <Link href="#" className="forgotp text-decoration-none">

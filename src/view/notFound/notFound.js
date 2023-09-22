@@ -1,19 +1,18 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
-
 const NotFound = () => {
-  const navigate = useNavigate;
-
-  const handleClick = async (e) => {
-    navigate("/");
-  };
-
   return (
     <>
-      <button className="btn btn dark" onClick={handleClick}>
-        Back
-      </button>
+      <div className="bg-dark" style={{ width: "100vw", height: "100vh" }}>
+        <h1 className="text-center" style={{ color: "white" }}>
+          {" "}
+          U need back
+        </h1>
+        <h1 className="text-center" style={{ color: "white" }}>
+          {" "}
+          Nothing here
+        </h1>
+      </div>
     </>
   );
 };

@@ -12,6 +12,7 @@ function ModalDelete(item) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
+  const loading = useSelector(loadingSelector);
   const handleDelete = async () => {
     try {
       dispatch(deleteRecipe({ recipes_id: item.item.recipes_id }));
@@ -36,11 +37,11 @@ function ModalDelete(item) {
           <h5 style={{ fontFamily: "optima" }}> yakin mau delete?</h5>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button size="sm" variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleDelete}>
-            {/* {loading ? "loading..." : "save changes"} */}
+          <Button size="sm" variant="primary" onClick={handleDelete}>
+            {loading ? "loading..." : "save changes"}
           </Button>
         </Modal.Footer>
       </Modal>

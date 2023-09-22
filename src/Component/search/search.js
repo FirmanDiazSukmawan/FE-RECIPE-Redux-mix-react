@@ -34,7 +34,11 @@ function Search() {
   };
 
   const handleRecipeClick = (recipes_id) => {
-    navigate(`/detailRecipe/${recipes_id}`);
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      navigate(`/detailRecipe/${recipes_id}`);
+    }
   };
 
   return (

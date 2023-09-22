@@ -9,6 +9,7 @@ import { createRecipe } from "../../redux/reducer/RecipeSlice";
 function AddRecipe() {
   const users_id = localStorage.getItem("userId");
   const [saveImage,setSaveImage] = useState("")
+  const [showImage,setShowImage] = useState("")
   const dispatch = useDispatch()
   const [data, setData] = useState({
     name_recipes:"",
@@ -28,8 +29,12 @@ const handleChange = (e) => {
 
 const handleUpload =(e) => {
   const uploader = e.target.files[0];
-  setSaveImage(uploader);
-  console.log(uploader)
+  const reader  = new FileReader();
+  reader.onload = () =>{
+    setShowImage(reader.result);
+  }
+  reader.readAsDataURL(uploader)
+  setSaveImage(e.target.files[0]);
 }
 
 const handleSubmit = async (e) => {
@@ -40,7 +45,7 @@ const handleSubmit = async (e) => {
   }
   catch (err) {
     toast.error("create recipe failed",err.message)
-    console.log(err.message)
+    throw err
   }
 }
 
@@ -57,14 +62,15 @@ const handleSubmit = async (e) => {
           <div className="row">
             <div className="col-12">
               <div className=" d-flex justify-content-center align-items-center">
-                <div className="image position-relative">
+                <div className="image position-relative d-flex justify-content-center">
                   <input
-                    className="form-control opacity-0"
+                    className="form-control opacity-0 "
                     type="file"
                     id="image"
                     name="image" 
                     onChange={handleUpload}
                   />
+                  {showImage && <img src={showImage} className="position-absolute" style={{width:"34vw", height:"50vh", objectFit:"contain"  }} alt="Uploaded" />}
                   <div id="icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -135,8 +141,7 @@ const handleSubmit = async (e) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
-              <div className=" d-flex justify-content-center align-items-center">
-                <div className="video position-relative my-5">
+              <div className=" d-flex justify-content-center align-items-center my-5">
                   <input
                     id="tittle"
                     className="form-control"
@@ -147,7 +152,7 @@ const handleSubmit = async (e) => {
                     name="video"
                     value={data.video}
                   />
-                </div>
+                
               </div>
             </div>
             <div className="row mt-4">

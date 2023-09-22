@@ -46,9 +46,9 @@ useEffect(() => {
     <div className="container-fluid">
       <div className="row">
         <div className="vidleft col-xxl-8 offset-lg-1 col-md-12  ">
-        <div className="col-xl-12">
+        <div className="col-xl-12" style={{width:"60vw"}}>
                 <iframe
-                  width="1120px"
+                  width="100%"
                   height="620px"
                   src={recipes?.video}
                   title="YouTube video player"

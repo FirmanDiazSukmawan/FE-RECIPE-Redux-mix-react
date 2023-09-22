@@ -39,8 +39,8 @@ const Router = () => {
           <Route path="addRecipe" element={<AddRecipe />} />
           <Route path="profile" element={<Profile />} />
           <Route path="search" element={<Search />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

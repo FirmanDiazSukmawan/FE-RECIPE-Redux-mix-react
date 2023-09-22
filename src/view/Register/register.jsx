@@ -15,6 +15,7 @@ function Register() {
   const [role, setRole] = useState(1);
   const [errmsg,setErrmsg] = useState("");
   const navigate = useNavigate();
+  
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -28,11 +29,13 @@ function Register() {
         role: role,
       });
        
-
-      navigate("/login")
-      toast.success("create account successfully")
+      toast.success("register berhasil brother")
+      setTimeout(() => {
+        navigate("/login")
+      }, 1500);
+      
+      
       console.log(res)
-      toast.success("register success brother");
     } catch (err) {
       if (err){
         setErrmsg(err.response.data.message);
@@ -132,7 +135,7 @@ function Register() {
             <input type="number" name='role' min={0} max={1} className='roleput mt-2' value={role} onChange={(e) => setRole(e.target.value)} /></div>
           </div>
           <div className="formcheck mb-3 mt-3">
-            <input type="checkbox" className="form-check-input bg-warning " />
+            <input type="checkbox" className="form-check-input bg-warning"  />
             <label htmlFor="terms" className="label-form">
             I agree to terms & conditions
             </label>

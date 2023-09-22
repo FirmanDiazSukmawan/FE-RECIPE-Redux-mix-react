@@ -41,9 +41,16 @@ export const createRecipe = createAsyncThunk(
     formDataToSend.append("users_id", data.users_id);
     try {
       const response = await axios.post(`${url}/recipe`, formDataToSend);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       return response.data;
     } catch (error) {
-      console.log(error);
+      toast.error("error creating recipe", error);
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+      throw error;
     }
   }
 );
@@ -75,6 +82,10 @@ export const updateRecipe = createAsyncThunk(
       }
     } catch (error) {
       toast.error("update failed", error);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      throw error;
     }
   }
 );

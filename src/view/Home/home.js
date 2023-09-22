@@ -28,7 +28,11 @@ const Home = () => {
   // console.log(recipe.data);
 
   const handleRecipeClick = (recipes_id) => {
-    navigate(`/detailRecipe/${recipes_id}`);
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      navigate(`/detailRecipe/${recipes_id}`);
+    }
   };
 
   const indexOfLastRecipe = currentPage * RecipePerPage;
