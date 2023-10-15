@@ -11,6 +11,7 @@ function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [errmsg,setErrmsg] = useState("");
 
     const [cek,setcek] = useState(false);
 
@@ -29,10 +30,9 @@ function Login(){
           password: password,
         });
         // localStorage.setItem("data",JSON.stringify(res.data.data));
-        localStorage.setItem("token",res.data.token);
-        localStorage.setItem("email",res.data.data.email);
-        localStorage.setItem("userId",res.data.data.users_id);
-        console.log(res)
+        localStorage.setItem("token",res?.data?.token);
+        localStorage.setItem("userId",res?.data?.data?.users_id);
+        // console.log(res)
         toast.success("Login succces bro")
         
         setTimeout(() => {
@@ -41,11 +41,11 @@ function Login(){
         
         
          
-        console.log(res)
+        // console.log(res)
       } catch (err) {
         if (err){
-         
-          toast.error(err.response.data.message)
+          setErrmsg(err?.response?.data?.message);
+          toast.error(errmsg)
         }
       }
     }

@@ -30,7 +30,7 @@ const handleChange = (e) => {
     ...data,
     [e.target.name]: e.target.value,
   });
-  console.log(data)
+  // console.log(data)
 };
 
 const handleImageUpload =(e) => {
@@ -68,7 +68,7 @@ const handleSubmit = async (e) => {
   }
 };
 
-console.log(showVideo)
+// console.log(showVideo)
 
 
   return (

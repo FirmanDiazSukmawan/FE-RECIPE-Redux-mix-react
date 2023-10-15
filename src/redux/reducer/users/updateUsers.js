@@ -1,23 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { url } from "../baseurl/url";
+import { url } from "../../baseurl/url";
 import { toast } from "react-toastify";
-
-const initialState = {
-  users: [],
-  status: "idle",
-  isLoading: false,
-};
-
-export const getUsersById = createAsyncThunk(
-  "users/getUsersById",
-  async (getId) => {
-    const response = await axios.get(`${url}/users/${getId}`);
-
-    return response.data;
-    // console.log(response);
-  }
-);
 
 export const updateUsers = createAsyncThunk(
   "users/updateUsers",
@@ -49,27 +33,16 @@ export const updateUsers = createAsyncThunk(
   }
 );
 
-export const usersSlice = createSlice({
-  name: "users",
-  initialState,
+export const updateUsersSlice = createSlice({
+  name: "updateUsers",
+  initialState: {
+    users: [],
+    status: "idle",
+    isLoading: false,
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getUsersById.pending, (state) => {
-        state.status = "loading";
-        state.isLoading = true;
-      })
-      .addCase(getUsersById.fulfilled, (state, action) => {
-        state.status = "success";
-        state.users = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(getUsersById.rejected, (state, action) => {
-        state.status = "failed";
-        state.users = action.error.message;
-        state.isLoading = false;
-      })
-
       .addCase(updateUsers.pending, (state) => {
         state.status = "loading";
         state.isLoading = true;
@@ -87,6 +60,6 @@ export const usersSlice = createSlice({
   },
 });
 
-export const usersSelector = (state) => state.users.users.data;
-export const isLoadingSelector = (state) => state.users.isLoading;
-export default usersSlice.reducer;
+export const updateUsersSelector = (state) => state.updateUsers?.users;
+export const isLoadingSelector = (state) => state.updateUsers?.isLoading;
+export default updateUsersSlice.reducer;

@@ -6,7 +6,7 @@ import { deleteRecipe, loadingSelector } from "../../redux/reducer/RecipeSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 function ModalDelete(item) {
-  console.log(item, "ini modal delete");
+  // console.log(item, "ini modal delete");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

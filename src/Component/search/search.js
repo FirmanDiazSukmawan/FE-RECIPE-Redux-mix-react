@@ -17,7 +17,7 @@ function Search() {
     axios
       .get(`${url}/recipe/?sort=ASC&search=${search}`)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setData(res.data.data);
         setLoading(false);
       })

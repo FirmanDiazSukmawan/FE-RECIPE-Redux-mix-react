@@ -10,7 +10,8 @@ function DetailVideo() {
 const {recipes_id} = useParams()
 const dispatch = useDispatch()
 const recipe = useSelector(recipeSelector)
-const recipes = recipe?.[0]
+// const recipes = recipe?.[0]
+const [loading,setLoading] = useState(true)
 
 
 // useEffect(()=>{
@@ -29,7 +30,8 @@ const recipes = recipe?.[0]
 
 useEffect(() => {
   dispatch(getRecipeId(recipes_id))
-},[])
+  setLoading(false)
+},[dispatch,recipes_id])
 
 
 
@@ -45,22 +47,24 @@ useEffect(() => {
   <section id='detailVideo'>
     <div className="container-fluid">
       <div className="row">
-        <div className="vidleft col-xxl-8 offset-lg-1 col-md-12  ">
+        {loading? ("loading...") : (recipe?.data?.map((item,index)=>(
+        <div className="vidleft col-xxl-8 offset-lg-1 col-md-12  " key={index}>
         <div className="col-xl-12" style={{width:"60vw"}}>
                 <iframe
                   width="100%"
                   height="620px"
-                  src={recipes?.video}
+                  src={item?.video}
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen=""
                 />
               </div>
           <h1 className="h1">
-           {recipes?.name_recipes}
+           {item?.name_recipes}
           </h1>
-          <p>{recipes?.created_at}</p>
+          <p>{item?.created_at}</p>
         </div>
+        )))}
         <div className="vidright col-xxl-3 col-md-12 d-flex flex-column align-items-center  ">
           <h1 className="h2">Next</h1>
           <div className="right my-4">

@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import RecipeSlice from "./reducer/RecipeSlice";
-import usersSlice from "./reducer/usersSlice";
 import getLikedUsersIdSlice from "./reducer/liked/getLikedSlice";
 import getSavedUsersIdSlice from "./reducer/Saved/getSavedSlice";
 import deleteLikedSlice from "./reducer/liked/deleteLikedSlice";
@@ -10,11 +9,14 @@ import createSavedSlice from "./reducer/Saved/createSavedSlice";
 import getCommentRecipeIdSlice from "./reducer/Comment/getCommentRecipeIdSlice";
 import createCommentSlice from "./reducer/Comment/createCommentSlice";
 import deleteCommentSlice from "./reducer/Comment/deleteCommentSlice";
+import updateUsersSlice from "./reducer/users/updateUsers";
+import getUsersIdSlice from "./reducer/users/getUsersIdSlice";
 
 export const store = configureStore({
   reducer: {
     recipe: RecipeSlice,
-    users: usersSlice,
+    updateUsers: updateUsersSlice,
+    getUsersId: getUsersIdSlice,
     getLikedUsersId: getLikedUsersIdSlice,
     createdLiked: createdLikedSlice,
     deleteLiked: deleteLikedSlice,

@@ -27,7 +27,7 @@ function DetailRecipe() {
   const comment = useSelector (getCommentRecipeIdSelector)
   const [loading,setLoading] = useState(true)
   const [commen,setCommen] = useState("")
-  console.log(comment);
+  // console.log(comment);
 
   useEffect(() => {
     dispatch(getRecipeId(recipes_id))
@@ -101,7 +101,7 @@ function DetailRecipe() {
       </div>
       <section id="detailRecipe">
         <div className="container-fluid">
-        {loading? ("loading....") : (recipe?.map((item,index)=>(
+        {loading? ("loading....") : (recipe?.data?.map((item,index)=>(
           <div className="row" key={index}>
             
           <div  className="col-xl-12 text-center"> 
@@ -134,7 +134,7 @@ function DetailRecipe() {
         <div className="col-xl-12">
           <h2>Ingredients</h2>
           {recipe
-            ? recipe?.map((item, index) => (
+            ? recipe?.data?.map((item, index) => (
                 <div className="desk" key={index}>
                   {item.ingredients.split('-').map((ingredient, subIndex) => (
                     <span key={subIndex}>

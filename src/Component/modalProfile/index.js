@@ -7,9 +7,9 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateUsers,
-  usersSelector,
   isLoadingSelector,
-} from "../../redux/reducer/usersSlice";
+} from "../../redux/reducer/users/updateUsers";
+import { getUsersIdSelector } from "../../redux/reducer/users/getUsersIdSlice";
 
 function ModalProfile() {
   const [show, setShow] = useState(false);
@@ -18,7 +18,7 @@ function ModalProfile() {
   const [saveImage, setSaveImage] = useState("");
   const getId = localStorage.getItem("userId");
   const dispatch = useDispatch();
-  const user = useSelector(usersSelector);
+  const user = useSelector(getUsersIdSelector);
   const isLoading = useSelector(isLoadingSelector);
 
   let [data, setData] = useState({
@@ -29,8 +29,8 @@ function ModalProfile() {
 
   useEffect(() => {
     setData({
-      username: user?.username,
-      phone_number: user?.phone_number,
+      username: user?.data?.username,
+      phone_number: user?.data?.phone_number,
       image: saveImage,
     });
   }, [user, saveImage]);
@@ -51,10 +51,9 @@ function ModalProfile() {
     event.preventDefault();
     try {
       dispatch(updateUsers({ getId, data, saveImage }));
-      toast.success("Profile updated successfully");
       handleClose();
     } catch (error) {
-      console.log("Error updating profile:", error);
+      // console.log("Error updating profile:", error);
       toast.error("Error updating profile", error.message);
     }
   };

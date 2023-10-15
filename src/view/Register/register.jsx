@@ -12,7 +12,6 @@ function Register() {
   const [phone_number, setphone_number] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-  const [role, setRole] = useState(1);
   const [errmsg,setErrmsg] = useState("");
   const navigate = useNavigate();
   
@@ -26,7 +25,6 @@ function Register() {
         phone_number: phone_number,
         password: password,
         confirmPassword: confirmPassword,
-        role: role,
       });
        
       toast.success("register berhasil brother")
@@ -35,10 +33,10 @@ function Register() {
       }, 1500);
       
       
-      console.log(res)
+      // console.log(res)
     } catch (err) {
       if (err){
-        setErrmsg(err.response.data.message);
+        setErrmsg(err?.response?.data?.message);
         toast.error(errmsg)
       }
     }
@@ -131,8 +129,6 @@ function Register() {
                 value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)}
               />
             </div>
-            <div className="role"><label htmlFor="role"> Role</label>
-            <input type="number" name='role' min={0} max={1} className='roleput mt-2' value={role} onChange={(e) => setRole(e.target.value)} /></div>
           </div>
           <div className="formcheck mb-3 mt-3">
             <input type="checkbox" className="form-check-input bg-warning"  />

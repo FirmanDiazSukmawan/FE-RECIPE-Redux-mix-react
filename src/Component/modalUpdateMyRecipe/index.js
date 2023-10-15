@@ -33,7 +33,7 @@ function ModalUpdate(item) {
     name_video: "",
     ingredients: "",
   });
-  console.log(recipe);
+  // console.log(recipe);
 
   useEffect(() => {
     setData({
@@ -55,13 +55,13 @@ function ModalUpdate(item) {
   const handleUpload = (e) => {
     const uploader = e.target.files[0];
     setSaveImage(uploader);
-    console.log(uploader);
+    // console.log(uploader);
   };
 
   const handleUploadVideo = (e) => {
     const uploader = e.target.files[0];
     setSaveVideo(uploader);
-    console.log(uploader);
+    // console.log(uploader);
   };
 
   // console.log(data);

@@ -13,13 +13,13 @@ import { Pagination } from "react-bootstrap";
 import NavbarHome from "../../Component/NavbarHome/navbarHome";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipeUsersId, loadingSelector, recipeSelector } from "../../redux/reducer/RecipeSlice";
-import { getUsersById, isLoadingSelector, usersSelector } from "../../redux/reducer/usersSlice";
 import ModalDelete from "../../Component/modalDeleteMyRecipe";
 import { getLikedUsersId, getLikedUsersIdSelector } from "../../redux/reducer/liked/getLikedSlice";
 import { getSavedUsersId, getSavedUsersIdSelector } from "../../redux/reducer/Saved/getSavedSlice";
 import Swal from "sweetalert2";
 import { deleteLiked } from "../../redux/reducer/liked/deleteLikedSlice";
 import { deleteSaved } from "../../redux/reducer/Saved/deleteSavedSlice";
+import { getUsersId, getUsersIdSelector } from "../../redux/reducer/users/getUsersIdSlice";
 
 
 function Profile() {
@@ -31,37 +31,39 @@ function Profile() {
   // console.log(getId);
   const dispatch = useDispatch();
   const recipe = useSelector(recipeSelector);
-  const recipesArray = Array.isArray(recipe) ? recipe : [];
-  const users = useSelector(usersSelector);
+  const users = useSelector(getUsersIdSelector);
+  const usersArray = Array.isArray(users?.data) ? users?.data : [users?.data];
   const loading = useSelector(loadingSelector);
-  const isLoading = useSelector(isLoadingSelector);
-  const [thisloading, setThisLoading] = useState(true)
+  const [thisloading, setThisLoading] = useState(true)  
   const like = useSelector(getLikedUsersIdSelector);
   const saved = useSelector (getSavedUsersIdSelector) 
   const navigate = useNavigate()
-  console.log(like)
 
   useEffect(() => {
     setThisLoading(false);
   }, [])
 
-  console.log(saved)
+  console.log(usersArray)
 
 
   useEffect(() => {
-    dispatch(getUsersById(getId));
+    dispatch(getUsersId(getId));
+    setThisLoading(false)
   }, [dispatch, getId])
 
   useEffect(() => {
     dispatch(getRecipeUsersId(getId));
+    setThisLoading(false)
   }, [dispatch, getId]);
 
   useEffect(() => {
     dispatch(getLikedUsersId(getId))
+    setThisLoading(false)
   },[dispatch,getId])
 
   useEffect(()=>{
     dispatch(getSavedUsersId(getId))
+    setThisLoading(false)
   },[dispatch,getId])
 
 
@@ -123,7 +125,7 @@ function Profile() {
 
   const indexOfLastRecipe = currentPage * recipePerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipePerPage;
-  const currentRecipe = recipesArray?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipe = recipe?.data?.slice(indexOfFirstRecipe, indexOfLastRecipe);
   const currentLike = like?.data?.slice(indexOfFirstRecipe, indexOfLastRecipe);
   const currentSaved = saved?.data?.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
@@ -150,23 +152,23 @@ function Profile() {
 
       ) : (
         <section id="profile" style={{ minHeight: "90vh" }}>
-          {isLoading ? ("loading...") : (
-            <div className="container-fluid">
+           {thisloading? ("loading...") : (usersArray?.map((item,index) => (
+            <div className="container-fluid" key={index} >
               <div className="row">
                 <div className="col-lg d-flex  flex-column align-items-center">
                   <div className=" position-relative">
                     <img
-                      src={users?.image}
+                      src={item?.image}
                       alt="user foto"
                       className="fotoprofile"
                     />
                     <ModalProfile />
                   </div>
-                  <h1 className="nameprofile">{users?.username}</h1>
+                  <h1 className="nameprofile">{item?.username}</h1>
                 </div>
               </div>
             </div>
-          )}
+          )))}
           <div className="container">
             <Tabs
               defaultActiveKey="MyRecipe"

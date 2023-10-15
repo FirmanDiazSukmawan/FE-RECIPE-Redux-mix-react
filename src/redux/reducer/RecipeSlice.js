@@ -46,7 +46,7 @@ export const createRecipe = createAsyncThunk(
       setTimeout(() => {
         window.location.reload();
       }, 1000);
-      console.log(formDataToSend);
+      // console.log(formDataToSend);
       return response.data;
     } catch (error) {
       toast.error("error creating recipe", error);
@@ -191,7 +191,7 @@ export const RecipeSlice = createSlice({
   },
 });
 
-export const recipeSelector = (state) => state.recipe?.recipe.data;
+export const recipeSelector = (state) => state.recipe?.recipe;
 export const loadingSelector = (state) => state.recipe?.loading;
 // console.log(recipeSelect);
 export default RecipeSlice.reducer;

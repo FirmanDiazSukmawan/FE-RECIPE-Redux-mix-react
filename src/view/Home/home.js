@@ -37,7 +37,10 @@ const Home = () => {
 
   const indexOfLastRecipe = currentPage * RecipePerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - RecipePerPage;
-  const currentRecipe = recipe?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipe = recipe?.data?.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -224,8 +227,8 @@ const Home = () => {
           <div className="container-fluid">
             <div className="container">
               <div className="row">
-                {currentRecipe?.map((item) => (
-                  <div className="col">
+                {currentRecipe?.map((item, index) => (
+                  <div className="col" key={index}>
                     <div
                       className="card my-2"
                       // style={{ width: 400, height: 400 }}
@@ -236,7 +239,7 @@ const Home = () => {
                           width: "100%",
                           height: "100%",
                           position: "absolute",
-                          backgroundColor: "rgba(200, 204, 204, 0.3)",
+                          backgroundColor: "rgba(80, 84, 83, 0.3)",
                         }}
                       />
                       <img
@@ -268,7 +271,7 @@ const Home = () => {
               <div className="d-flex justify-content-center mt-3">
                 <Pagination>
                   {Array.from({
-                    length: Math.ceil(recipe?.length / RecipePerPage),
+                    length: Math.ceil(recipe?.data?.length / RecipePerPage),
                   }).map((_, index) => (
                     <Pagination.Item
                       key={index}
