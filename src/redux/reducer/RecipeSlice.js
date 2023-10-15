@@ -32,36 +32,40 @@ export const getRecipeUsersId = createAsyncThunk(
 
 export const createRecipe = createAsyncThunk(
   "recipe/createRecipe",
-  async ({ data, saveImage }) => {
+  async ({ data, saveImage, saveVideo }) => {
     const formDataToSend = new FormData();
     formDataToSend.append("name_recipes", data.name_recipes);
     formDataToSend.append("image", saveImage);
-    formDataToSend.append("video", data.video);
+    formDataToSend.append("video", saveVideo);
+    formDataToSend.append("name_video", data.name_video);
     formDataToSend.append("ingredients", data.ingredients);
     formDataToSend.append("users_id", data.users_id);
     try {
       const response = await axios.post(`${url}/recipe`, formDataToSend);
+      toast.success("Recipe created successfully");
       setTimeout(() => {
         window.location.reload();
       }, 1000);
+      console.log(formDataToSend);
       return response.data;
     } catch (error) {
       toast.error("error creating recipe", error);
       setTimeout(() => {
         window.location.reload();
       }, 500);
-      throw error;
+      console.error(error);
     }
   }
 );
 
 export const updateRecipe = createAsyncThunk(
   "recipe/updateRecipe",
-  async ({ recipes_id, data, saveImage }) => {
+  async ({ recipes_id, data, saveImage, saveVideo }) => {
     const formDataToSend = new FormData();
     formDataToSend.append("name_recipes", data?.name_recipes);
     formDataToSend.append("image", saveImage);
-    formDataToSend.append("video", data?.video);
+    formDataToSend.append("video", saveVideo);
+    formDataToSend.append("name_video", data.name_video);
     formDataToSend.append("ingredients", data?.ingredients);
 
     try {

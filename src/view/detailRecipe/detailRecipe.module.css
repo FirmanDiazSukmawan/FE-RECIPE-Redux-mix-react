@@ -1,0 +1,79 @@
+
+.button1 {
+    position: relative;
+    bottom: 5.71%;
+    width: 3.3vw;
+    height:3.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right:10%;
+    background-color: #EFC81A;
+    border-radius: 15px;
+  }
+
+  .button2 {
+    position: relative;
+    bottom: 5.71%;
+    width: 3.3vw;
+    height:3.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right:5%;
+    background-color: #fff;
+    border-radius: 15px;
+  }
+  
+  .icon {
+    color: white;
+    font-size:100%;
+  }
+  
+  .icon1 {
+    color:#EFC81A;
+    font-size:100%;
+  }
+
+  .dropdown {
+    font-size: 14px; /* Ukuran font */
+    padding: 4px 10px; /* Padding */
+    line-height: 1.5; /* Tinggi baris */
+    width:40px
+  }
+  
+
+
+  @media screen and (max-width: 1000px) {
+  
+  .button1 {
+    right:15%;
+    width: 5.3vw;
+    height:5.5vw;
+}
+.button2 {
+    right:1%;
+    width: 5.3vw;
+    height:5.5vw;
+}
+  }
+
+  @media screen and (max-width: 700px) {
+  
+    .button1 {
+      right:15%;
+  }
+  .button2 {
+      right:5%;
+  }
+    }
+
+    @media screen and (max-width: 450px) {
+  
+        .button1 {
+          right:12%;
+      }
+      .button2 {
+          right:5%;
+      }
+        }

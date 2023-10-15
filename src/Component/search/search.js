@@ -27,6 +27,10 @@ function Search() {
       });
   };
 
+  useEffect(() => {
+    handleSearch();
+  }, []); //
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearch();
@@ -97,6 +101,14 @@ function Search() {
                   style={{ width: 400, height: 400, cursor: "pointer" }}
                   onClick={() => handleRecipeClick(item.recipes_id)}
                 >
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      backgroundColor: "rgba(200, 204, 204, 0.4)",
+                    }}
+                  />
                   <img
                     src={item.image}
                     className="card-img "
@@ -112,6 +124,7 @@ function Search() {
                         fontFamily: "Airbnb Cereal App",
                         fontSize: 32,
                         textTransform: "capitalize",
+                        zIndex: 2,
                       }}
                     >
                       {item.name_recipes}

@@ -10,6 +10,7 @@ import {
   recipeSelector,
   updateRecipe,
 } from "../../redux/reducer/RecipeSlice";
+import { Spinner } from "react-bootstrap";
 
 function ModalUpdate(item) {
   // console.log(item, "ini data modal");
@@ -19,14 +20,17 @@ function ModalUpdate(item) {
   const handleShow = () => setShow(true);
   // console.log(recipes_id);
   const [saveImage, setSaveImage] = useState("");
+  const [saveVideo, setSaveVideo] = useState("");
   const dispatch = useDispatch();
   const recipe = useSelector(recipeSelector);
   const recipes = recipe?.[0];
   const loading = useSelector(loadingSelector);
+  const [loadingUpload, setLoadingUpload] = useState(false);
   const [data, setData] = useState({
     name_recipes: "",
     image: saveImage,
-    video: "",
+    video: saveVideo,
+    name_video: "",
     ingredients: "",
   });
   console.log(recipe);
@@ -35,10 +39,10 @@ function ModalUpdate(item) {
     setData({
       name_recipes: recipes?.name_recipes,
       image: saveImage,
-      video: recipes?.video,
+      video: saveVideo,
       ingredients: recipes?.ingredients,
     });
-  }, [recipes, saveImage]);
+  }, [recipes, saveImage, saveVideo]);
 
   const handleChange = (e) => {
     setData({
@@ -54,20 +58,33 @@ function ModalUpdate(item) {
     console.log(uploader);
   };
 
+  const handleUploadVideo = (e) => {
+    const uploader = e.target.files[0];
+    setSaveVideo(uploader);
+    console.log(uploader);
+  };
+
   // console.log(data);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoadingUpload(true);
     try {
-      dispatch(
-        updateRecipe({ recipes_id: item.item.recipes_id, data, saveImage })
+      await dispatch(
+        updateRecipe({
+          recipes_id: item.item.recipes_id,
+          data,
+          saveImage,
+          saveVideo,
+        })
       );
       handleClose();
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingUpload(false);
     }
   };
-
   // console.log(handleSubmit)
   return (
     <>
@@ -85,7 +102,19 @@ function ModalUpdate(item) {
           <Modal.Title>Update Recipe yakin?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Control type="file" onChange={handleUpload} name="image" />
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label className="mb-3">Upload Image : </Form.Label>
+            <Form.Control type="file" onChange={handleUpload} name="image" />
+
+            <Form.Label className="mt-3">Upload Video : </Form.Label>
+            <Form.Control
+              type="file"
+              onChange={handleUploadVideo}
+              name="video"
+              className="custom-file-input mb-3"
+            />
+          </Form.Group>
+
           <Form.Control
             type="text"
             placeholder="name recipes"
@@ -104,10 +133,10 @@ function ModalUpdate(item) {
           />
           <Form.Control
             type="text"
-            placeholder="video"
+            placeholder="name video"
             className="my-3"
-            name="video"
-            value={data?.video}
+            name="name_video"
+            value={data?.name_video}
             onChange={handleChange}
           />
         </Modal.Body>
@@ -115,14 +144,27 @@ function ModalUpdate(item) {
           <Button size="sm" variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            size="sm"
-            variant="warning"
-            onClick={handleSubmit}
-            disabled={loading}
-          >
-            {loading ? "loading..." : "save changes"}
-          </Button>
+          {loadingUpload ? (
+            <Button size="sm" variant="warning" disabled>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              Uploading...
+            </Button>
+          ) : (
+            <Button
+              size="sm"
+              variant="warning"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? "loading..." : "Save Changes"}
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </>

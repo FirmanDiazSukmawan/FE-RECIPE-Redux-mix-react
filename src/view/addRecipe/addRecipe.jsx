@@ -5,16 +5,22 @@ import "react-toastify/dist/ReactToastify.css";
 import NavbarHome from "../../Component/NavbarHome/navbarHome";
 import { useDispatch } from "react-redux";
 import { createRecipe } from "../../redux/reducer/RecipeSlice";
+import ReactPlayer from "react-player";
 
 function AddRecipe() {
   const users_id = localStorage.getItem("userId");
   const [saveImage,setSaveImage] = useState("")
   const [showImage,setShowImage] = useState("")
+  const [saveVideo,setSaveVideo] = useState("")
+  const [showVideo,setShowVideo] = useState("")
   const dispatch = useDispatch()
+  const [loading,setLoading] = useState(true)
+  const [buttonLabel, setButtonLabel] = useState("Submit");
   const [data, setData] = useState({
     name_recipes:"",
     image:"",
     video:"",
+    name_video:"",
     ingredients:"",
     users_id:users_id
 });
@@ -27,7 +33,7 @@ const handleChange = (e) => {
   console.log(data)
 };
 
-const handleUpload =(e) => {
+const handleImageUpload =(e) => {
   const uploader = e.target.files[0];
   const reader  = new FileReader();
   reader.onload = () =>{
@@ -37,26 +43,42 @@ const handleUpload =(e) => {
   setSaveImage(e.target.files[0]);
 }
 
+const handleVideoUpload = (e) => {
+  const videoFile = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    setSaveVideo(videoFile);
+    setShowVideo(URL.createObjectURL(videoFile));
+  };
+  reader.readAsDataURL(videoFile);
+};
+
 const handleSubmit = async (e) => {
   e.preventDefault();
-  try {
-    dispatch (createRecipe({data,saveImage}));
-    toast.success("Recipe created successfully");
-  }
-  catch (err) {
-    toast.error("create recipe failed",err.message)
-    throw err
-  }
-}
+  setLoading(true); 
+  setButtonLabel(<div class="spinner-border text-secondary" ></div>);
 
+  try {
+    await dispatch(createRecipe({ data, saveImage, saveVideo }));
+  } catch (err) {
+    toast.error("Create recipe failed", err.message);
+  } finally {
+    setLoading(false); 
+    setButtonLabel("Submit");
+  }
+};
+
+console.log(showVideo)
 
 
   return (
     <>
+    
     <ToastContainer/>
       <div>
         <NavbarHome />
       </div>
+      
       <section id="addRecipe">
         <div className="container-fluid">
           <div className="row">
@@ -68,7 +90,7 @@ const handleSubmit = async (e) => {
                     type="file"
                     id="image"
                     name="image" 
-                    onChange={handleUpload}
+                    onChange={handleImageUpload}
                   />
                   {showImage && <img src={showImage} className="position-absolute" style={{width:"34vw", height:"50vh", objectFit:"contain"  }} alt="Uploaded" />}
                   <div id="icon">
@@ -149,16 +171,40 @@ const handleSubmit = async (e) => {
                     placeholder="video"
                     aria-label="form-control-lg example"
                     onChange={handleChange}
-                    name="video"
-                    value={data.video}
+                    name="name_video"
+                    value={data.name_video}
                   />
                 
               </div>
             </div>
+            <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <div className=" d-flex justify-content-center align-items-center">
+                <div className="image position-relative d-flex justify-content-center">
+                  <input
+                    className="form-control opacity-0 "
+                    type="file"
+                    id="video"
+                    name="video" 
+                    onChange={handleVideoUpload}
+                  />
+                 {showVideo && <ReactPlayer url={showVideo} controls width="100%" height="100%" style={{ objectFit: "fill",position:"absolute" }} />}
+                  <div id="icon">
+                  <i class="bi bi-camera-video" style={{fontSize:35}}></i>
+                    <div className="addimg" >Add Video</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
             <div className="row mt-4">
               <div className="d-grid col-12 mx-auto justify-content-center">
                 <button className="btn btn-warning " type="button" onClick={handleSubmit}>
-                  Submit
+                {loading ? buttonLabel : <div class="spinner-border text-secondary" >
+                  
+                </div>}
                 </button>
               </div>
             </div>

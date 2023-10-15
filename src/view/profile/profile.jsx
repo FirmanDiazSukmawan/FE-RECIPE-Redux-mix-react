@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../Component/footer/footer";
 import { url } from "../../Component/login/login";
 import axios from "axios";
@@ -15,6 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipeUsersId, loadingSelector, recipeSelector } from "../../redux/reducer/RecipeSlice";
 import { getUsersById, isLoadingSelector, usersSelector } from "../../redux/reducer/usersSlice";
 import ModalDelete from "../../Component/modalDeleteMyRecipe";
+import { getLikedUsersId, getLikedUsersIdSelector } from "../../redux/reducer/liked/getLikedSlice";
+import { getSavedUsersId, getSavedUsersIdSelector } from "../../redux/reducer/Saved/getSavedSlice";
+import Swal from "sweetalert2";
+import { deleteLiked } from "../../redux/reducer/liked/deleteLikedSlice";
+import { deleteSaved } from "../../redux/reducer/Saved/deleteSavedSlice";
 
 
 function Profile() {
@@ -31,12 +36,16 @@ function Profile() {
   const loading = useSelector(loadingSelector);
   const isLoading = useSelector(isLoadingSelector);
   const [thisloading, setThisLoading] = useState(true)
-  console.log(recipe)
+  const like = useSelector(getLikedUsersIdSelector);
+  const saved = useSelector (getSavedUsersIdSelector) 
+  const navigate = useNavigate()
+  console.log(like)
 
   useEffect(() => {
     setThisLoading(false);
   }, [])
 
+  console.log(saved)
 
 
   useEffect(() => {
@@ -47,10 +56,76 @@ function Profile() {
     dispatch(getRecipeUsersId(getId));
   }, [dispatch, getId]);
 
+  useEffect(() => {
+    dispatch(getLikedUsersId(getId))
+  },[dispatch,getId])
+
+  useEffect(()=>{
+    dispatch(getSavedUsersId(getId))
+  },[dispatch,getId])
+
+
+  const handleDeleteLike = async(liked_id) => {
+    const result = await Swal.fire({
+      title: 'Delete Product',
+      text: 'Are you sure you want to delete this product?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#dc3545', 
+    });
+
+    if (result.isConfirmed){
+      try {
+        await (dispatch(deleteLiked(liked_id)))
+        
+        dispatch(getLikedUsersId(getId))
+      }
+      catch  (err){
+        console.log("delete failed: " + err)
+      }
+    }
+  }
+
+  const handleDeleteSaved = async(saved_id) => {
+    const result = await Swal.fire({
+      title: 'Delete Product',
+      text: 'Are you sure you want to delete this product?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#dc3545', 
+    });
+
+    if (result.isConfirmed){
+      try {
+        await (dispatch(deleteSaved(saved_id)))
+        
+        dispatch(getSavedUsersId(getId))
+      }
+      catch  (err){
+        console.log("delete failed: " + err)
+      }
+    }
+  }
+
+  const handleRecipeClick = (recipes_id) => {
+  
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      navigate(`/detailRecipe/${recipes_id}`);
+    }
+  };
+
 
   const indexOfLastRecipe = currentPage * recipePerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipePerPage;
   const currentRecipe = recipesArray?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentLike = like?.data?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentSaved = saved?.data?.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
 
 
@@ -111,6 +186,7 @@ function Profile() {
                         <div
                           className="card "
                           style={{ width: 370, height: 250 }}
+                          
                         >
                           <img
                             src={item.image}
@@ -120,7 +196,9 @@ function Profile() {
                               width: 370,
                               height: 250,
                               objectFit: "cover",
+                              
                             }}
+                           
                           />
                           <div className="card-img-overlay">
                             <h5
@@ -131,12 +209,13 @@ function Profile() {
                                 fontSize: 28,
                                 textTransform: "capitalize",
                               }}
+                              onClick={() => handleRecipeClick(item.recipes_id)}
                             >
                               {item.name_recipes}
                             </h5>
                             <div className="d-flex flex-row">
                             <ModalUpdate item={item}
-                              recipeId={item.recipes_id}
+                              recipeId={item.recipes_id} style={{zIndex:1}}
                             />
                             <ModalDelete item={item} />
                             </div>
@@ -165,8 +244,8 @@ function Profile() {
               <Tab eventKey="Saved Recipe" title="Saved Recipe">
                 <div className="container">
                   <div className="row row-cols-1 row-cols-md-3 g-4 ">
-                    {currentRecipe?.map((item) => (
-                      <div className="col" key={item.recipes_id}>
+                    {loading ? ("loading...") : (currentSaved?.map((item,index) => (
+                      <div className="col" key={index}>
                         <div
                           className="card "
                           style={{ width: 370, height: 250 }}
@@ -182,21 +261,46 @@ function Profile() {
                             }}
                           />
                           <div className="card-img-overlay">
-                            <h5 className="card-title position-absolute bottom-0">
+                            <h5 className="card-title position-absolute bottom-0"
+                              style={{
+                                color: "#fff",
+                                fontFamily: "Airbnb Cereal App",
+                                fontSize: 28,
+                                textTransform: "capitalize",
+                              }}
+                              onClick={() => handleRecipeClick(item.recipes_id)}>
                               {item.name_recipes}
                             </h5>
+                            <button type="button"  onClick={() => handleDeleteSaved(item.saved_id)} className="btn btn-warning" >
+                            <i className="bi bi-bookmark" style={{ color: "white" }}></i>
+                              </button>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    )))}
+                  </div>
+                  <div className="d-flex justify-content-center mt-3">
+                    <Pagination>
+                      {Array.from({
+                        length: Math.ceil(saved?.data?.length / recipePerPage),
+                      }).map((_, index) => (
+                        <Pagination.Item
+                          key={index}
+                          active={index + 1 === currentPage}
+                          onClick={() => handlePageChage(index + 1)}
+                        >
+                          {index + 1}
+                        </Pagination.Item>
+                      ))}
+                    </Pagination>
                   </div>
                 </div>
               </Tab>
               <Tab eventKey="Liked Recipe" title="Liked Recipe">
                 <div className="container">
                   <div className="row row-cols-1 row-cols-md-3 g-4 ">
-                    {currentRecipe?.map((item) => (
-                      <div className="col" key={item.recipes_id}>
+                    {loading ? ("loading...") : (currentLike?.map((item,index) => (
+                      <div className="col" key={index}>
                         <div
                           className="card "
                           style={{ width: 370, height: 250 }}
@@ -212,13 +316,38 @@ function Profile() {
                             }}
                           />
                           <div className="card-img-overlay">
-                            <h5 className="card-title position-absolute bottom-0">
+                            <h5 className="card-title position-absolute bottom-0"
+                              style={{
+                                color: "#fff",
+                                fontFamily: "Airbnb Cereal App",
+                                fontSize: 28,
+                                textTransform: "capitalize",
+                              }} onClick={() => handleRecipeClick(item.recipes_id)}>
                               {item.name_recipes}
                             </h5>
+                            <button type="button"  onClick={() => handleDeleteLike(item.liked_id)} className="btn btn-warning" >
+                            <i className="bi bi-hand-thumbs-up" style={{ color: "white" }}></i>
+                              </button>
                           </div>
+                          
                         </div>
                       </div>
-                    ))}
+                    )))}
+                  </div>
+                  <div className="d-flex justify-content-center mt-3">
+                    <Pagination>
+                      {Array.from({
+                        length: Math.ceil(like?.data?.length / recipePerPage),
+                      }).map((_, index) => (
+                        <Pagination.Item
+                          key={index}
+                          active={index + 1 === currentPage}
+                          onClick={() => handlePageChage(index + 1)}
+                        >
+                          {index + 1}
+                        </Pagination.Item>
+                      ))}
+                    </Pagination>
                   </div>
                 </div>
               </Tab>

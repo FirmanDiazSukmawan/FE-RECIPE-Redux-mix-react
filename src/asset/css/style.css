@@ -652,8 +652,6 @@ html > * {
  
 }
 
-
-
 /* style detailRecipe */
 
 #detailRecipe h1 {
@@ -667,7 +665,7 @@ html > * {
   margin-bottom: 4.5rem;
 }
 #detailRecipe .image img {
-  width: 67.625rem;
+  width: 62.625rem;
   height: 43.75rem;
 }
 
@@ -680,12 +678,13 @@ html > * {
   line-height: 62px; /* 129.167% */
   text-transform: capitalize;
   margin-top: 6.8125rem;
-  margin-bottom: 2.625rem;
+  margin-bottom: 2.625rem; 
 }
 
 #detailRecipe .ucomment img {
   width: 64px;
   height: 64px;
+  border-radius: 50%;
 }
 #detailRecipe p.user {
   color: #000;
@@ -693,9 +692,9 @@ html > * {
   font-size: 24px;
   font-style: bold;
   font-weight: 500;
-  line-height: 62px;
+  line-height: 50px;
+  align-items: center;
   text-transform: capitalize;
-  margin-top: -0.7em;
 }
 
 #detailRecipe p.cmnt {
@@ -704,7 +703,8 @@ html > * {
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 62px;
+  line-height: 50px;
+  align-items: center;
   text-transform: capitalize;
   opacity: 60%;
   margin-top: -1.4em;

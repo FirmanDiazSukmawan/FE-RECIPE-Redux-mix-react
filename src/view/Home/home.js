@@ -231,6 +231,14 @@ const Home = () => {
                       // style={{ width: 400, height: 400 }}
                       onClick={() => handleRecipeClick(item.recipes_id)}
                     >
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          position: "absolute",
+                          backgroundColor: "rgba(200, 204, 204, 0.3)",
+                        }}
+                      />
                       <img
                         src={item.image}
                         className="card-img "
@@ -246,6 +254,8 @@ const Home = () => {
                             fontFamily: "Airbnb Cereal App",
                             fontSize: 32,
                             textTransform: "capitalize",
+                            fontWeight: "bold",
+                            zIndex: 1,
                           }}
                         >
                           {item.name_recipes}
