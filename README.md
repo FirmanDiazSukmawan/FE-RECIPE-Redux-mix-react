@@ -37,7 +37,6 @@ These are the libraries and service used for building this Front End My Recipe
 - [React.js](https://react.dev/)
 - [Redux](https://redux.js.org/)
 - [Redux-Toolkit](https://redux-toolkit.js.org/)
-- [cloudinary](https://cloudinary.com/)
 - [Bootstrap](https://getbootstrap.com/)
 - [React-Bootstrap](https://react-bootstrap.netlify.app/)
 - And Other
