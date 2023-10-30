@@ -83,10 +83,8 @@ npm i / npm install
 
 <table>
  <tr>
-    <td><img width="350px" src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/bb6d5511-932b-41be-b12c-e7bc6a3e3eea
-" border="0" alt="1" /></td>
-    <td> <img width="350px" src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/c51af4d2-5479-4d3e-9f48-beab6a95ca3c
-"  border="0"  alt="2" /></td>
+    <td><img width="350px" src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/bb6d5511-932b-41be-b12c-e7bc6a3e3eea" border="0" alt="1" /></td>
+    <td> <img width="350px" src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/c51af4d2-5479-4d3e-9f48-beab6a95ca3c"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Login</td>
@@ -113,10 +111,8 @@ npm i / npm install
 <td>Comment</td>
   </tr>
   <tr>
-    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/f840a01d-108b-45a2-8ed4-4fdeaa56780d
-" border="0" alt="3" /> </td>
-     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/bfc9ef78-49bc-4d5f-8d92-b8863c2ea9c1
-"  border="0" alt="4" /></td>
+    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/f840a01d-108b-45a2-8ed4-4fdeaa56780d" border="0" alt="3" /> </td>
+     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/bfc9ef78-49bc-4d5f-8d92-b8863c2ea9c1"  border="0" alt="4" /></td>
   </tr>
    <tr>
      <td>Add Recipe</td>
