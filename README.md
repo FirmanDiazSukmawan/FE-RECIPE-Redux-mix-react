@@ -53,7 +53,7 @@ git clone https://github.com/xTats/FE-RECIPE-Redux-mix-react.git
 2. Change directory to FE-RECIPE-Redux-mix-react
 
 ```sh
-cd BE-RECIPE-RN
+cd FE-RECIPE-Redux-mix-react
 ```
 
 3. Install all of the required modules
