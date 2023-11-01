@@ -253,7 +253,7 @@ const Home = () => {
                         <h5
                           className="card-title position-absolute bottom-0"
                           style={{
-                            color: "#3F3A3A",
+                            color: "#fff",
                             fontFamily: "Airbnb Cereal App",
                             fontSize: 32,
                             textTransform: "capitalize",

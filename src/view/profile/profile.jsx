@@ -229,7 +229,7 @@ function Profile() {
                   <div className="d-flex justify-content-center mt-3">
                     <Pagination>
                       {Array.from({
-                        length: Math.ceil(recipe?.length / recipePerPage),
+                        length: Math.ceil(recipe?.data?.length / recipePerPage),
                       }).map((_, index) => (
                         <Pagination.Item
                           key={index}

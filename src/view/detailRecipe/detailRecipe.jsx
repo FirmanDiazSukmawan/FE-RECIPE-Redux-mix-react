@@ -157,7 +157,7 @@ function DetailRecipe() {
                 <h2>Video Step</h2>
               </div>
               <div className="col-xl-12" onClick={(()=>{handleRecipeClick(recipes_id)})} >
-                <div style={{backgroundColor:"#EFC81A", width:"22vw",height:"10vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                <div style={{backgroundColor:"#EFC81A", width:"100%",height:"5vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <i class="bi bi-play" style={{color:"white",fontSize:34.96}}></i>
                 </div>
               </div>
@@ -165,14 +165,14 @@ function DetailRecipe() {
             </div>
             <div className="row" style={{ marginBottom: "2.9069rem" }} onClick={(()=>{handleRecipeClick(recipes_id)})}>
               <div className="col-xl-12">
-              <div style={{backgroundColor:"#EFC81A", width:"22vw",height:"10vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+              <div style={{backgroundColor:"#EFC81A", width:"100%",height:"5vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <i class="bi bi-play" style={{color:"white",fontSize:34.96}}></i>
                 </div>
               </div>
             </div>
             <div className="row" style={{ marginBottom: "2.9069rem" }} onClick={(()=>{handleRecipeClick(recipes_id)})}>
               <div className="col-xl-12">
-              <div style={{backgroundColor:"#EFC81A", width:"22vw",height:"10vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+              <div style={{backgroundColor:"#EFC81A", width:"100%",height:"5vh",borderRadius:"15px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <i class="bi bi-play" style={{color:"white",fontSize:34.96}}></i>
                 </div>
               </div>

@@ -92,7 +92,7 @@ const handleSubmit = async (e) => {
                     name="image" 
                     onChange={handleImageUpload}
                   />
-                  {showImage && <img src={showImage} className="position-absolute" style={{width:"34vw", height:"50vh", objectFit:"contain"  }} alt="Uploaded" />}
+                  {showImage && <img src={showImage} className="position-absolute" style={{width:"100%", height:"100%", objectFit:"contain"  }} alt="Uploaded" />}
                   <div id="icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

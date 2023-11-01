@@ -1,9 +1,23 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUsersId,
+  getUsersIdSelector,
+} from "../../redux/reducer/users/getUsersIdSlice";
+import { useEffect } from "react";
 
 function NavbarHome() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userId = localStorage.getItem("userId");
+  const user = useSelector(getUsersIdSelector);
+  console.log(user);
+
+  useEffect(() => {
+    dispatch(getUsersId(userId));
+  }, [dispatch, userId]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -58,7 +72,12 @@ function NavbarHome() {
                 }}
               >
                 <Link className="nav-link" to="/profile">
-                  <i className="bi bi-person-fill" style={{ fontSize: 52 }}></i>
+                  <img
+                    src={user?.data?.image}
+                    alt="user foto"
+                    className="fotoprofile"
+                    style={{ width: 30, height: 30, borderRadius: 15 }}
+                  />
                 </Link>
                 <Link className="nav-link" to="/login">
                   <button
