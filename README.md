@@ -127,8 +127,8 @@ npm i / npm install
     <td>Profile Liked Recipe</td>
   </tr>
     <tr>
-<td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/c62d595e-0a18-4762-8f9d-1206bdea10b5"  border="0" alt="4" /></td>
-    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/bd345656-123e-46f9-a579-839ff7618e54" border="0" alt="3" /> </td>
+<td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/380708a9-ecb0-47a3-8807-0d4cf8618a07"  border="0" alt="4" /></td>
+    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/2ebdae06-af40-4291-9e18-31015fb5030d" border="0" alt="3" /> </td>
   </tr>
    <tr>
      <td>Edit Profile</td>
