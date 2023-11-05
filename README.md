@@ -111,7 +111,7 @@ npm i / npm install
   </tr>
   <tr>
     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/9c5be88d-e952-4b3b-8a9e-bcb66a1bfdac" border="0" alt="3" /> </td>
-     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/f6503845-e62a-4165-9821-683299556186"  border="0" alt="4" /></td>
+     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/be8932e4-bbce-4fbc-9a72-939da47aa95a"  border="0" alt="4" /></td>
   </tr>
    <tr>
      <td>Add Recipe</td>
@@ -119,8 +119,8 @@ npm i / npm install
 
   </tr>
     <tr>
-    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/68696fc5-ad9b-455d-99a2-d9520f332197" border="0" alt="3" /> </td>
-     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/b2505912-ed15-48e5-b129-296c97f62948"  border="0" alt="4" /></td>
+    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/564b32db-e9c3-41dd-928a-201e85c4dd6f" border="0" alt="3" /> </td>
+     <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/69a2198e-dccf-48d7-b1b1-65af7924ac85"  border="0" alt="4" /></td>
   </tr>
    <tr>
      <td>Profile Saved Recipe</td>
