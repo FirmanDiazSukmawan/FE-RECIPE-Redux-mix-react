@@ -12,7 +12,7 @@ import ModalUpdate from "../../Component/modalUpdateMyRecipe";
 import { Pagination } from "react-bootstrap";
 import NavbarHome from "../../Component/NavbarHome/navbarHome";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipeUsersId, loadingSelector, recipeSelector } from "../../redux/reducer/RecipeSlice";
+import { getRecipeUsersId, loadingSelector, recipeSelector, recipeUsersIdSelector } from "../../redux/reducer/RecipeSlice";
 import ModalDelete from "../../Component/modalDeleteMyRecipe";
 import { getLikedUsersId, getLikedUsersIdSelector } from "../../redux/reducer/liked/getLikedSlice";
 import { getSavedUsersId, getSavedUsersIdSelector } from "../../redux/reducer/Saved/getSavedSlice";
@@ -30,7 +30,8 @@ function Profile() {
   const getId = localStorage.getItem("userId");
   // console.log(getId);
   const dispatch = useDispatch();
-  const recipe = useSelector(recipeSelector);
+  const recipe = useSelector(recipeUsersIdSelector);
+  // const recipeArray = Array.isArray(recipe?.data) ? recipe?.data : [recipe?.data];
   const users = useSelector(getUsersIdSelector);
   const usersArray = Array.isArray(users?.data) ? users?.data : [users?.data];
   const loading = useSelector(loadingSelector);
@@ -38,12 +39,13 @@ function Profile() {
   const like = useSelector(getLikedUsersIdSelector);
   const saved = useSelector (getSavedUsersIdSelector) 
   const navigate = useNavigate()
+  console.log(recipe)
 
   useEffect(() => {
     setThisLoading(false);
   }, [])
 
-  console.log(usersArray)
+  // console.log(usersArray)
 
 
   useEffect(() => {
@@ -183,15 +185,15 @@ function Profile() {
               >
                 <div className="container">
                   <div className="row row-cols-1 row-cols-md-3 g-4 ">
-                    {loading ? ("loading...") : (currentRecipe?.map((item) => (
-                      <div className="col" key={item.recipes_id}>
+                    {loading ? ("loading...") : (!currentRecipe ? ("no data") :(currentRecipe.map((item,index) => (
+                      <div className="col" key={index}>
                         <div
                           className="card "
                           style={{ width: 370, height: 250 }}
                           
                         >
                           <img
-                            src={item.image}
+                            src={item?.image}
                             className="card-img "
                             alt="..."
                             style={{
@@ -213,18 +215,18 @@ function Profile() {
                               }}
                               onClick={() => handleRecipeClick(item.recipes_id)}
                             >
-                              {item.name_recipes}
+                              {item?.name_recipes}
                             </h5>
                             <div className="d-flex flex-row">
                             <ModalUpdate item={item}
-                              recipeId={item.recipes_id} style={{zIndex:1}}
+                              recipeId={item?.recipes_id} style={{zIndex:1}}
                             />
                             <ModalDelete item={item} />
                             </div>
                           </div>
                         </div>
                       </div>
-                    )))}
+                    ))))}
                   </div>
                   <div className="d-flex justify-content-center mt-3">
                     <Pagination>

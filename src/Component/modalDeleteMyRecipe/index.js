@@ -15,7 +15,7 @@ function ModalDelete(item) {
   const loading = useSelector(loadingSelector);
   const handleDelete = async () => {
     try {
-      dispatch(deleteRecipe({ recipes_id: item.item.recipes_id }));
+      dispatch(deleteRecipe({ recipes_id: item?.item?.recipes_id }));
       handleClose();
     } catch (err) {
       toast.error("Error updating recipe:", err);

@@ -15,6 +15,7 @@ import getUsersIdSlice from "./reducer/users/getUsersIdSlice";
 export const store = configureStore({
   reducer: {
     recipe: RecipeSlice,
+    // recipeUserId: RecipeSlice,
     updateUsers: updateUsersSlice,
     getUsersId: getUsersIdSlice,
     getLikedUsersId: getLikedUsersIdSlice,

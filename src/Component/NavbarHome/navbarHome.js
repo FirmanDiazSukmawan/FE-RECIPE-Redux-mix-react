@@ -13,7 +13,7 @@ function NavbarHome() {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const user = useSelector(getUsersIdSelector);
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     dispatch(getUsersId(userId));

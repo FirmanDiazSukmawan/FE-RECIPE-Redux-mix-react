@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const initialState = {
   recipe: [],
+  recipeUsersId: [],
   status: "idle",
   loading: false,
 };
@@ -26,7 +27,8 @@ export const getRecipeUsersId = createAsyncThunk(
   "recipe/getRecipeUsersId",
   async (getId) => {
     const response = await axios.get(`${url}/recipe/user/${getId}`);
-    return response.data;
+    // console.log(response?.data);
+    return response?.data;
   }
 );
 
@@ -107,7 +109,7 @@ export const deleteRecipe = createAsyncThunk(
         setTimeout(() => {
           window.location.reload();
         }, 1000);
-
+        console.log(response?.data);
         return response?.data;
       }
     } catch (err) {
@@ -149,11 +151,11 @@ export const RecipeSlice = createSlice({
       })
       .addCase(getRecipeUsersId.fulfilled, (state, action) => {
         state.status = false;
-        state.recipe = action.payload;
+        state.recipeUsersId = action.payload;
       })
       .addCase(getRecipeUsersId.rejected, (state, action) => {
         state.status = false;
-        state.recipe = action.error.message;
+        state.recipeUsersId = action.error.message;
       })
       .addCase(createRecipe.pending, (state) => {
         state.status = true;
@@ -182,7 +184,7 @@ export const RecipeSlice = createSlice({
       })
       .addCase(deleteRecipe.fulfilled, (state, action) => {
         state.status = false;
-        state.recipe = action.payload;
+        state.recipe = state.recipe.filter((item) => item !== action.payload);
       })
       .addCase(deleteRecipe.rejected, (state, action) => {
         state.status = false;
@@ -192,6 +194,7 @@ export const RecipeSlice = createSlice({
 });
 
 export const recipeSelector = (state) => state.recipe?.recipe;
+export const recipeUsersIdSelector = (state) => state.recipe.recipeUsersId;
 export const loadingSelector = (state) => state.recipe?.loading;
 // console.log(recipeSelect);
 export default RecipeSlice.reducer;
