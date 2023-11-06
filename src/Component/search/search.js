@@ -5,17 +5,19 @@ import NavbarHome from "../NavbarHome/navbarHome";
 import Footer from "../footer/footer";
 import { url } from "../login/login";
 import { toast } from "react-toastify";
+import { Dropdown } from "react-bootstrap";
 
 function Search() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sortOrder, setSortOrder] = useState("asc");
   const navigate = useNavigate();
 
   const handleSearch = () => {
     setLoading(true);
     axios
-      .get(`${url}/recipe/?sort=ASC&search=${search}`)
+      .get(`${url}/recipe/?sort=${sortOrder}&search=${search}`)
       .then((res) => {
         // console.log(res.data.data);
         setData(res.data.data);
@@ -37,6 +39,12 @@ function Search() {
     }
   };
 
+  const handleToggleSort = () => {
+    const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
+    setSortOrder(newSortOrder);
+    handleSearch();
+  };
+
   const handleRecipeClick = (recipes_id) => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
@@ -53,7 +61,7 @@ function Search() {
         <div className="button-search position-relative ">
           <input
             className="form-control border-2 bg-body-secondary my-3"
-            placeholder="Search Restaurant, Food"
+            placeholder="Cari Restoran, Makanan"
             style={{
               width: "33.5vw",
               height: "4.5vh",
@@ -73,9 +81,17 @@ function Search() {
               paddingLeft: "1vw",
             }}
           ></i>
-          {/* <button className="btn btn-dark" onClick={handleSearch}>
-            button
-          </button> */}
+          <button
+            className="btn btn-primary position-absolute"
+            style={{ top: 15, right: 0 }}
+            onClick={handleToggleSort}
+          >
+            {sortOrder === "asc" ? (
+              <i className="bi bi-arrow-up-circle"></i>
+            ) : (
+              <i className="bi bi-arrow-down-circle-fill"></i>
+            )}
+          </button>
         </div>
       </div>
       <div className="container" id="search" style={{ minHeight: "32vh" }}>
@@ -89,8 +105,8 @@ function Search() {
                 alignItems: "center",
               }}
             >
-              <div class="spinner-border text-primary" role="status">
-                <span class="sr-only"></span>
+              <div className="spinner-border text-primary" role="status">
+                <span className="sr-only"></span>
               </div>
             </div>
           ) : (
