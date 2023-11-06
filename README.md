@@ -100,7 +100,7 @@ npm i / npm install
   </tr>
 
   <tr>
-    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/c761a7cc-2081-418c-93ab-b884590185a0" border="0" alt="3" /> </td>
+    <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/977426c1-6a14-484d-8dc3-0cfaaf01f038" border="0" alt="3" /> </td>
      <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/134b6cb3-06b4-4974-95d0-9fd8911c2cc7"  border="0" alt="4" /></td>
 <td><img width="350px"  src="https://github.com/xTats/FE-RECIPE-Redux-mix-react/assets/122331956/9032ea87-6dab-4b34-9ceb-8ed0e9e925c8" border="0" alt="3" /> </td>
   </tr>
