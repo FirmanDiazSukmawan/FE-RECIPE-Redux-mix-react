@@ -9,7 +9,7 @@
   <p align="center">
     <a href="https://github.com/xTats/FE-RECIPE-Redux-mix-react"><strong>Explore the docs »</strong></a>
     <br />
-  <a href="https://fe-recipe-redux-mix-react.vercel.app">View Demo</a>
+  <a href="https://fe-recipe-azure.vercel.app/">View Demo</a>
     ·
     <a href="https://be-recipe-rn.vercel.app">Api Demo</a> -->
   </p>
@@ -157,7 +157,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`FE-RECIPE-Redux-mix-react WEB`](https://github.com/xTats/FE-RECIPE-Redux-mix-react)
 
-:rocket: [`Demo MyRecipe Web`](https://fe-recipe-redux-mix-react.vercel.app)
+:rocket: [`Demo MyRecipe Web`](https://fe-recipe-azure.vercel.app/)
 
 :rocket: [`Demo MyRecipe APK`](https://drive.google.com/drive/folders/1qPWp6MSmSWI7VJyg3eW_oPy1AgkEhqLK)
 
