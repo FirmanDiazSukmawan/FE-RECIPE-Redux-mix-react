@@ -159,7 +159,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`Demo MyRecipe Web`](https://fe-recipe-redux-mix-react.vercel.app)
 
-:rocket: [`Demo MyRecipe APK`](https://drive.google.com/file/d/10Du1B1AyJg-WY7X6DcBdc40IhXtWtS03/view?usp=sharing)
+:rocket: [`Demo MyRecipe APK`](https://drive.google.com/drive/folders/1qPWp6MSmSWI7VJyg3eW_oPy1AgkEhqLK)
 
 Project link : [https://github.com/xTats/FE-RECIPE-Redux-mix-react](https://github.com/xTats/FE-RECIPE-Redux-mix-react)]
 
