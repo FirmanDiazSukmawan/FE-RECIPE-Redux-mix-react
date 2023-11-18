@@ -7,7 +7,7 @@
   </div>
   <h3 align="center">My Recipe</h3>
   <p align="center">
-    <a href="https://github.com/xTats/FE-RECIPE-Redux-mix-react"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/FirmanDiazSukmawan/FE-RECIPE-Redux-mix-react"><strong>Explore the docs »</strong></a>
     <br />
   <a href="https://fe-recipe-azure.vercel.app/">View Demo</a>
     ·
@@ -151,11 +151,11 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend-Recipe-RN`](https://github.com/xTats/BE-Recipe-RN)
+:rocket: [`Backend-Recipe-RN`](https://github.com/FirmanDiazSukmawan/BE-Recipe-RN)
 
-:rocket: [`FE-Recipe-RN`](https://github.com/xTats/FE-Recipe-RN)
+:rocket: [`FE-Recipe-RN`](https://github.com/FirmanDiazSukmawan/FE-Recipe-RN)
 
-:rocket: [`FE-RECIPE-Redux-mix-react WEB`](https://github.com/xTats/FE-RECIPE-Redux-mix-react)
+:rocket: [`FE-RECIPE-Redux-mix-react WEB`](https://github.com/FirmanDiazSukmawan/FE-RECIPE-Redux-mix-react)
 
 :rocket: [`Demo MyRecipe Web`](https://fe-recipe-azure.vercel.app/)
 
